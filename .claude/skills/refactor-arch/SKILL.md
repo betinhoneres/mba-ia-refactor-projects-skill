@@ -44,3 +44,34 @@ Faça uma varredura estática profunda no código-fonte do projeto cruzando-o co
 Classifique cada problema por severidade: CRITICAL, HIGH, MEDIUM ou LOW.
 
 Garanta que o diretório reports/ exista na raiz do projeto e salve o relatório gerado preenchendo o template oficial em: reports/audit-project-<id>.md.
+
+PAUSA E CONFIRMAÇÃO OBRIGATÓRIA:
+
+Imprima uma síntese dos achados no console.
+
+PARALISE A EXECUÇÃO e exiba a mensagem:
+
+⚠️ Atenção: A auditoria foi concluída. O relatório detalhado foi gerado em reports/audit-project-<id>.md.
+Deseja prosseguir com a Fase 3 (Refatoração Automática para MVC)? [y/N]
+
+NÃO altere nem crie nenhum arquivo de código antes de receber a confirmação explícita do usuário.
+
+## FASE 3 — Refatoração Arquitetural Automática
+
+1. **Leitura de Diretrizes:** Leia o arquivo `playbook_refatoracao.md` e a `guideline_arquitetura_mvc.md`.
+2. **Execução Modular Estruturada:** Com base nas Fases 1 e 2, execute a refatoração progressiva para o padrão MVC:
+   - **Camada Model:** Centralize toda a lógica de persistência, conexão, esquemas e acesso a dados em diretórios dedicados (`src/models/` ou equivalente). Elimine queries SQL espalhadas ou hardcoded.
+   - **Camada Controller / Services:** Isole as regras de negócio, validações e tratamentos em controllers ou services dedicados, mantendo as rotas limpas.
+   - **Camada Routes / Views:** Reestruture as rotas para atuarem apenas como mapeadores de endpoints HTTP que despacham as requisições para os controllers.
+   - **Configurações e Segurança:** Extraia credenciais, chaves e variáveis sensíveis para o diretório `src/config/` utilizando variáveis de ambiente (`.env`).
+3. **Validação de Contrato:** Assegure que o código refatorado mantenha o contrato funcional original da aplicação (mantendo endpoints, métodos HTTP e estruturas de resposta compatíveis).
+4. **Output da Fase 3:** Imprima no terminal um relatório claro resumindo todas as alterações estruturais realizadas no formato:
+   ```text
+   ==================================================
+   FASE 3: RESUMO DA REFATORAÇÃO MVC CONCLUÍDA
+   ==================================================
+   - Arquivos Criados: <Lista arquivos de diretórios e novos>
+   - Arquivos Modificados: <Lista arquivos de refatorados>
+   - Anti-patterns Corrigidos: <Resumo dos principais problemas resolvidos>
+   - Status: Refatoração estrutural concluída com sucesso!
+   ==================================================
